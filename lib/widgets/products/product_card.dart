@@ -69,7 +69,7 @@ class ProductCard extends StatelessWidget {
             placeholder: AssetImage('assets/sabra.jpg'),
           ),
           _buildTitlePriceRow(),
-          AddressTag('Hello'),
+          AddressTag(product.location.address),
           Text(product.userEmail),
           _buildActionButtons(context),
         ],

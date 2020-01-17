@@ -36,7 +36,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="10" />
     <option name="y" value="20" />
     <option name="width" value="1346" />
@@ -47,6 +47,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -75,8 +77,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="ProjectPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -120,7 +120,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="752" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="752" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23600605" />
       <window_info id="Structure" order="1" side_tool="true" />
@@ -135,7 +136,7 @@
       <window_info anchor="bottom" id="Logcat" order="1" weight="0.32847896" />
       <window_info anchor="bottom" id="TODO" order="2" sideWeight="0.49924356" weight="0.32847896" />
       <window_info anchor="bottom" id="Terminal" order="3" weight="0.32847896" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="4" sideWeight="0.53025717" side_tool="true" visible="true" weight="0.16639742" />
+      <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.53025717" side_tool="true" weight="0.16639742" />
       <window_info anchor="bottom" id="Android Profiler" order="5" show_stripe_button="false" />
       <window_info anchor="bottom" id="Dart Analysis" order="6" sideWeight="0.4697428" weight="0.18578352" />
       <window_info anchor="bottom" id="Run" order="7" />

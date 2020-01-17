@@ -5,6 +5,7 @@ import '../models/product.dart';
 import 'package:scoped_model/scoped_model.dart';
 import '../scoped-models/main.dart';
 import '../widgets/form_inputs/location.dart';
+import '../models/location_data.dart';
 
 class ProductEditPage extends StatefulWidget {
   @override
@@ -18,21 +19,35 @@ class _ProductEditPageState extends State<ProductEditPage> {
     'title': null,
     'description': null,
     'price': null,
-    'image': 'assets/sabra.jpg'
+    'image': 'assets/sabra.jpg',
+    'location': null
   };
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   final _titleFocusNode = FocusNode();
   final _descriptionFocusNode = FocusNode();
   final _priceFocusNode = FocusNode();
+  final _titleTextController = TextEditingController();
 
   Widget _buildTitleTextField(Product product) {
+    if(product == null && _titleTextController.text.trim() == ''){
+      _titleTextController.text = '';
+    }else if (product != null && _titleTextController.text.trim() == ''){
+      _titleTextController.text = product.title;
+    }else if (product != null && _titleTextController.text.trim() != ''){
+      _titleTextController.text = _titleTextController.text;
+    }else if (product == null && _titleTextController.text.trim() != '') {
+      _titleTextController.text = _titleTextController.text;
+    }else{
+      _titleTextController.text = '';
+    }
     return EnsureVisibleWhenFocused(
       focusNode: _titleFocusNode,
       child: TextFormField(
         focusNode: _titleFocusNode,
         decoration: InputDecoration(labelText: 'Product Title'),
+        controller: _titleTextController,
         // autovalidate: true, //meka autovalidate hnda hama ntrm error eka denwa
-        initialValue: product == null ? '' : product.title,
+        // initialValue: product == null ? '' : product.title,
         validator: (String value) {
           // if (value.trim().length <= 0) {   //trim is a identify of emty space and its ignored
           if (value.isEmpty || value.length < 5) {
@@ -130,7 +145,7 @@ class _ProductEditPageState extends State<ProductEditPage> {
               SizedBox(
                 height: 12.0,
               ),
-              LocationInput(),
+              LocationInput(_setLocation, product),
               SizedBox(
                 height: 12.0,
               ),
@@ -150,6 +165,10 @@ class _ProductEditPageState extends State<ProductEditPage> {
     );
   }
 
+  void _setLocation(LocationData locData){
+    _formData['location'] = locData;
+  }
+
   void _submitForm(
       Function addProduct, Function updateProduct, Function setSelectedProduct,
       [int selectedProductIndex]) {
@@ -160,10 +179,11 @@ class _ProductEditPageState extends State<ProductEditPage> {
     _formkey.currentState.save();
     if (selectedProductIndex == -1) {
       addProduct(
-        _formData['title'],
+        _titleTextController.text,
         _formData['description'],
         _formData['image'],
         _formData['price'],
+        _formData['location']
       ).then((bool success) {
         if (success) {
           Navigator.pushReplacementNamed(context, '/products')
@@ -185,10 +205,11 @@ class _ProductEditPageState extends State<ProductEditPage> {
       });
     } else {
       updateProduct(
-        _formData['title'],
+        _titleTextController.text,
         _formData['description'],
         _formData['image'],
         _formData['price'],
+        _formData['location']
       ).then((_) => Navigator.pushReplacementNamed(context, '/products')
           .then((_) => setSelectedProduct(null)));
     }
