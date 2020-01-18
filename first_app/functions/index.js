@@ -22,7 +22,8 @@ const GCS = require('@google-cloud/storage');
 const gcs = new GCS.Storage(gcconfig);
 
 fbAdmin.initializeApp({
-  credential: fbAdmin.credential.cert(require('./flutter-products.json'))
+  //project json file aka
+  credential: fbAdmin.credential.cert(require('./-.json'))
 });
 
 exports.storeImage = functions.https.onRequest((req, res) => {
@@ -56,7 +57,8 @@ exports.storeImage = functions.https.onRequest((req, res) => {
     });
 
     busboy.on('finish', () => {
-      const bucket = gcs.bucket('flutter-products-d1a6b.appspot.com');
+      //firebase project-id aka
+      const bucket = gcs.bucket('-.appspot.com');
       const id = uuid();
       let imagePath = 'images/' + id + '-' + uploadData.name;
       if (oldImagePath) {
@@ -104,7 +106,8 @@ exports.deleteImage = functions.database.ref('/products/{productId}').onDelete(
     const imageData = snapshot.val();
     const imagePath = imageData.imagePath;
 
-    const bucket = gcs.bucket('flutter-products-d1a6b.appspot.com');
+    //firebase project id aka
+    const bucket = gcs.bucket('-.appspot.com');
     return bucket.file(imagePath).delete();
   }
 );
