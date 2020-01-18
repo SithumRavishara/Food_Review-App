@@ -221,7 +221,7 @@ mixin ProductsModel on ConnectedProductsModel {
     notifyListeners();
     return http
         .delete(
-            'https://flutter-products-d1a6b.firebaseio.com/products/${deletedProductId}.json?auth=${_authenticatedUser.token}')
+            ' - /products/${deletedProductId}.json?auth=${_authenticatedUser.token}')
         .then((http.Response response) {
       _isLoading = false;
       notifyListeners();
@@ -239,7 +239,7 @@ mixin ProductsModel on ConnectedProductsModel {
     notifyListeners();
     return http
         .get(
-            'https://flutter-products-d1a6b.firebaseio.com/products.json?auth=${_authenticatedUser.token}')
+            ' - /products.json?auth=${_authenticatedUser.token}')
         .then<Null>((http.Response response) {
       final List<Product> fetchedProductList = [];
       final Map<String, dynamic> productListData = json.decode(response.body);
@@ -302,11 +302,11 @@ mixin ProductsModel on ConnectedProductsModel {
     http.Response response;
     if (newFavoriteStatus) {
       response = await http.put(
-          'https://flutter-products-d1a6b.firebaseio.com/products/${selectedProduct.id}/wishlistUsers/${_authenticatedUser.id}.json?auth=${_authenticatedUser.token}',
+          ' - /products/${selectedProduct.id}/wishlistUsers/${_authenticatedUser.id}.json?auth=${_authenticatedUser.token}',
           body: json.encode(true));
     } else {
       response = await http.delete(
-          'https://flutter-products-d1a6b.firebaseio.com/products/${selectedProduct.id}/wishlistUsers/${_authenticatedUser.id}.json?auth=${_authenticatedUser.token}');
+          ' - /products/${selectedProduct.id}/wishlistUsers/${_authenticatedUser.id}.json?auth=${_authenticatedUser.token}');
     }
     if (response.statusCode != 200 && response.statusCode != 201) {
       final Product updatedProduct = Product(
@@ -363,13 +363,13 @@ mixin UserModel on ConnectedProductsModel {
     http.Response response;
     if (mode == AuthMode.Login) {
       response = await http.post(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyC-iwhWaws7GCpnaRyVQLA9fh3QGGW5oNM',
+        ' - /v1/accounts:signInWithPassword?key=AIzaSyC-iwhWaws7GCpnaRyVQLA9fh3QGGW5oNM',
         body: json.encode(authData),
         headers: {'Content-Type': 'application/json'},
       );
     } else {
       response = await http.post(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyC-iwhWaws7GCpnaRyVQLA9fh3QGGW5oNM',
+        ' - /v1/accounts:signUp?key=AIzaSyC-iwhWaws7GCpnaRyVQLA9fh3QGGW5oNM',
         body: json.encode(authData),
         headers: {'Content-type': 'application/json'},
       );
