@@ -65,7 +65,8 @@ mixin ProductsModel on ConnectedProductsModel {
     final imageUploadRequest = http.MultipartRequest(
         'POST',
         Uri.parse(
-            ' https://us-central1-flutter-products-d1a6b.cloudfunctions.net/storeImage'));
+          //url aka
+            ' -'));
     final file = await http.MultipartFile.fromPath(
       'image',
       image.path,
@@ -122,7 +123,7 @@ mixin ProductsModel on ConnectedProductsModel {
     };
     try {
       final http.Response response = await http.post(
-          'https://flutter-products-d1a6b.firebaseio.com/products.json?auth=${_authenticatedUser.token}',
+          ' - ?auth=${_authenticatedUser.token}',
           body: json.encode(productData));
 
       if (response.statusCode != 200 && response.statusCode != 201) {
@@ -189,7 +190,7 @@ mixin ProductsModel on ConnectedProductsModel {
     try{
     final http.Response response = await http
         .put(
-            'https://flutter-products-d1a6b.firebaseio.com/products/${selectedProduct.id}.json?auth=${_authenticatedUser.token}',
+            ' - /products/${selectedProduct.id}.json?auth=${_authenticatedUser.token}',
             body: json.encode(updateData));
       _isLoading = false;
       final Product updatedProduct = Product(
