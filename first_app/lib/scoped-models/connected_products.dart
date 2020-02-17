@@ -363,13 +363,13 @@ mixin UserModel on ConnectedProductsModel {
     http.Response response;
     if (mode == AuthMode.Login) {
       response = await http.post(
-        ' - /v1/accounts:signInWithPassword?key=AIzaSyC-iwhWaws7GCpnaRyVQLA9fh3QGGW5oNM',
+        ' - /v1/accounts:signInWithPassword?key= ...',
         body: json.encode(authData),
         headers: {'Content-Type': 'application/json'},
       );
     } else {
       response = await http.post(
-        ' - /v1/accounts:signUp?key=AIzaSyC-iwhWaws7GCpnaRyVQLA9fh3QGGW5oNM',
+        ' - /v1/accounts:signUp?key= ...',
         body: json.encode(authData),
         headers: {'Content-type': 'application/json'},
       );
